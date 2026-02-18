@@ -18,13 +18,13 @@ public class StudentManager {
     public void addStudent(String name, int age, String course, double gpa) {
         students.add(new Student(nextId++, name, age, course, gpa));
         saveToFile();
-        System.out.println("✅ Student added successfully!");
+        System.out.println("Student added successfully!");
     }
 
     // ---- VIEW ALL ----
     public void viewAllStudents() {
         if (students.isEmpty()) {
-            System.out.println("⚠️  No students found.");
+            System.out.println("No students found.");
             return;
         }
         printHeader();
@@ -40,7 +40,7 @@ public class StudentManager {
             System.out.println(found);
             printFooter();
         } else {
-            System.out.println("❌ Student with ID " + id + " not found.");
+            System.out.println("Student with ID " + id + " not found.");
         }
     }
 
@@ -53,7 +53,7 @@ public class StudentManager {
             }
         }
         if (results.isEmpty()) {
-            System.out.println("❌ No students found with name: " + name);
+            System.out.println("No students found with name: " + name);
         } else {
             printHeader();
             for (Student s : results) System.out.println(s);
@@ -70,9 +70,9 @@ public class StudentManager {
             s.setCourse(course);
             s.setGpa(gpa);
             saveToFile();
-            System.out.println("✅ Student updated successfully!");
+            System.out.println("Student updated successfully!");
         } else {
-            System.out.println("❌ Student with ID " + id + " not found.");
+            System.out.println("Student with ID " + id + " not found.");
         }
     }
 
@@ -82,23 +82,23 @@ public class StudentManager {
         if (s != null) {
             students.remove(s);
             saveToFile();
-            System.out.println("✅ Student deleted successfully!");
+            System.out.println("Student deleted successfully!");
         } else {
-            System.out.println("❌ Student with ID " + id + " not found.");
+            System.out.println("Student with ID " + id + " not found.");
         }
     }
 
     // ---- SORT BY GPA ----
     public void sortByGpa() {
         students.sort((a, b) -> Double.compare(b.getGpa(), a.getGpa()));
-        System.out.println("📊 Students sorted by GPA (High to Low):");
+        System.out.println("Students sorted by GPA (High to Low):");
         viewAllStudents();
     }
 
     // ---- STATISTICS ----
     public void showStatistics() {
         if (students.isEmpty()) {
-            System.out.println("⚠️  No data to show statistics.");
+            System.out.println("No data to show statistics.");
             return;
         }
         double total = 0, max = students.get(0).getGpa(), min = students.get(0).getGpa();
@@ -107,7 +107,7 @@ public class StudentManager {
             if (s.getGpa() > max) max = s.getGpa();
             if (s.getGpa() < min) min = s.getGpa();
         }
-        System.out.println("\n📈 ===== Statistics =====");
+        System.out.println("\n===== Statistics =====");
         System.out.println("  Total Students : " + students.size());
         System.out.printf("  Average GPA    : %.2f%n", total / students.size());
         System.out.printf("  Highest GPA    : %.2f%n", max);
@@ -128,7 +128,7 @@ public class StudentManager {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             oos.writeObject(students);
         } catch (IOException e) {
-            System.out.println("⚠️  Error saving data: " + e.getMessage());
+            System.out.println("Error saving data: " + e.getMessage());
         }
     }
 
@@ -140,7 +140,7 @@ public class StudentManager {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
             students = (List<Student>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("⚠️  Error loading data: " + e.getMessage());
+            System.out.println("Error loading data: " + e.getMessage());
         }
     }
 
@@ -153,4 +153,5 @@ public class StudentManager {
     private void printFooter() {
         System.out.println("+------+----------------------+-----+----------------------+------+");
     }
+
 }
