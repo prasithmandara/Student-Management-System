@@ -23,10 +23,10 @@ public class Main {
                 case 7 -> manager.sortByGpa();
                 case 8 -> manager.showStatistics();
                 case 9 -> {
-                    System.out.println("👋 Goodbye!");
+                    System.out.println("Goodbye!");
                     System.exit(0);
                 }
-                default -> System.out.println("❌ Invalid choice. Try again.");
+                default -> System.out.println("Invalid choice. Try again.");
             }
         }
     }
@@ -92,7 +92,7 @@ public class Main {
                 int val = Integer.parseInt(scanner.nextLine().trim());
                 return val;
             } catch (NumberFormatException e) {
-                System.out.println("⚠️  Please enter a valid number.");
+                System.out.println("  Please enter a valid number.");
             }
         }
     }
@@ -104,8 +104,9 @@ public class Main {
                 double val = Double.parseDouble(scanner.nextLine().trim());
                 return val;
             } catch (NumberFormatException e) {
-                System.out.println("⚠️  Please enter a valid decimal number.");
+                System.out.println(" Please enter a valid decimal number.");
             }
         }
     }
+
 }
